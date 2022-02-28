@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  backend:
+    build: ./orderingToolServer/
+    ports:
+      - 8080:8080
+      
+  frontend:
+    build: ./app/
+    ports:
+      - 4200:80
