@@ -15,8 +15,8 @@ describe('OrderTableComponent', () => {
       declarations: [ OrderTableComponent ],
       imports: [
         NoopAnimationsModule,
-        MatPaginatorModule,
-        MatSortModule,
+        // MatPaginatorModule,
+        // MatSortModule,
         MatTableModule,
       ]
     }).compileComponents();

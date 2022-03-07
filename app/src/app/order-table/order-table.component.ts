@@ -1,30 +1,31 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
+import {Component, OnInit} from '@angular/core';
 import { OrderTableDataSource, OrderTableItem } from './order-table-datasource';
+import {MatTableDataSource} from "@angular/material/table";
+import {OrderData} from "../orderData";
+import {OrderService} from "../order.service";
 
 @Component({
   selector: 'order-table',
   templateUrl: './order-table.component.html',
   styleUrls: ['./order-table.component.css']
 })
-export class OrderTableComponent implements AfterViewInit {
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<OrderTableItem>;
-  dataSource: OrderTableDataSource;
-
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
+export class OrderTableComponent implements OnInit {
+  ELEMENT_DATA : OrderData[] = [];
   displayedColumns = ['id', 'date', 'customer', 'dryWeightKg', 'status'];
+  dataSource : MatTableDataSource<OrderData> = new MatTableDataSource<OrderData>(this.ELEMENT_DATA);
 
-  constructor() {
-    this.dataSource = new OrderTableDataSource();
+  constructor(private _orderService : OrderService) {
   }
 
-  ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+  ngOnInit(): void {
+    this.getAllOrders();
+  }
+
+  public getAllOrders() {
+    const resp = this._orderService.getOrders();
+    resp.subscribe(orders => {
+      console.log(orders)
+      this.dataSource.data = orders as OrderData[]
+    });
   }
 }

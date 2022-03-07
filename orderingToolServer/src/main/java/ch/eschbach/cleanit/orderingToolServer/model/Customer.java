@@ -28,7 +28,7 @@ public class Customer {
     private String name;
 
     @Column(name = "CUSTOMER_FIRSTNAME")
-    private String surname;
+    private String firstname;
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
     private List<Order> orders;
@@ -38,7 +38,7 @@ public class Customer {
     public Customer(Long id, String name, String surname, List<Order> orders) {
         this.id = id;
         this.name = name;
-        this.surname = surname;
+        this.firstname = surname;
         this.orders = orders;
     }
 
@@ -58,12 +58,12 @@ public class Customer {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setFirstname(String surname) {
+        this.firstname = surname;
     }
 
     public List<Order> getOrders() {
