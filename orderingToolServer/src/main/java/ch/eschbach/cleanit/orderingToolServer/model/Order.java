@@ -1,10 +1,13 @@
 package ch.eschbach.cleanit.orderingToolServer.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,9 +18,6 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "orders")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Order.class)
-
-
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +34,10 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "CUSTOMER_ID")
     public Customer customer;
+
+    @Column(name = "ORDERSTATUS", columnDefinition = "varchar(32) default 'Received'")
+    @Enumerated(EnumType.STRING)
+    public OrderStatus status;
 
     public LocalDate getOrderDate() {
         return orderDate;

@@ -1,7 +1,6 @@
 package ch.eschbach.cleanit.orderingToolServer.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,8 +14,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "customers")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Customer.class)
-
 public class Customer {
 
     @Id
@@ -31,6 +28,7 @@ public class Customer {
     private String firstname;
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<Order> orders;
 
     protected Customer() {}
