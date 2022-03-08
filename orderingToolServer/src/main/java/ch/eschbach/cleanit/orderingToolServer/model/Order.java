@@ -55,7 +55,7 @@ public class Order {
         this.dryWeightKg = dryWeightKg;
     }
 
-    public Order(Customer customer, double dryWeightKg,LocalDate orderDate) {
+    public Order(Customer customer, double dryWeightKg, LocalDate orderDate) {
         this.dryWeightKg = dryWeightKg;
         this.customer = customer;
         this.orderDate = orderDate;

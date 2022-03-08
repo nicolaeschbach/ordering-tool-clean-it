@@ -1,7 +1,6 @@
 package ch.eschbach.cleanit.orderingToolServer.services;
 
 import ch.eschbach.cleanit.orderingToolServer.model.Customer;
-import ch.eschbach.cleanit.orderingToolServer.model.Order;
 import ch.eschbach.cleanit.orderingToolServer.persistence.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,10 +26,8 @@ public class CustomerService {
 
     public void deleteCustomer(Customer customer) {
         if (customer == null) {
-            throw new RuntimeException("order parameter not set");
+            throw new RuntimeException("customer parameter not set");
         }
         customerRepo.delete(customer);
-
     }
-
 }

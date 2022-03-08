@@ -2,6 +2,7 @@ package ch.eschbach.cleanit.orderingToolServer.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,17 +29,17 @@ public class Customer {
     @Column(name = "CUSTOMER_FIRSTNAME")
     private String firstname;
 
-    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @JsonIgnore
     private List<Order> orders;
 
     protected Customer() {}
 
-    public Customer(Long id, String name, String surname, List<Order> orders) {
+    public Customer(Long id, String name, String surname) {
         this.id = id;
         this.name = name;
         this.firstname = surname;
-        this.orders = orders;
+        this.orders = new ArrayList<>();
     }
 
     public Long getId() {
