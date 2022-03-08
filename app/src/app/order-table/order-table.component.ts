@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import { OrderTableDataSource, OrderTableItem } from './order-table-datasource';
 import {MatTableDataSource} from "@angular/material/table";
-import {OrderData} from "../orderData";
-import {OrderService} from "../order.service";
+import {OrderData} from "../services/orderData";
+import {OrderService} from "../services/order.service";
 
 @Component({
   selector: 'order-table',

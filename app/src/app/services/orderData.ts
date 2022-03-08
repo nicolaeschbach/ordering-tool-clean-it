@@ -1,4 +1,4 @@
-import {CustomerData} from "./customerData";
+import {CustomerData} from "../customerData";
 
 export interface OrderData {
   id: number;
