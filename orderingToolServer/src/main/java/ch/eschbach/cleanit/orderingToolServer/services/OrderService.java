@@ -15,10 +15,6 @@ public class OrderService {
     @Autowired
     private OrderRepository orderRepo;
 
-    public OrderService(OrderRepository customerRepo) {
-        this.orderRepo = customerRepo;
-    }
-
     public Order getOrderById(Long id) {
         return orderRepo.findById(id).orElse(null);
     }

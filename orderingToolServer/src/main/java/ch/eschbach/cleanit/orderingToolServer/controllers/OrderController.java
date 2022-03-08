@@ -2,6 +2,7 @@ package ch.eschbach.cleanit.orderingToolServer.controllers;
 
 import ch.eschbach.cleanit.orderingToolServer.model.Customer;
 import ch.eschbach.cleanit.orderingToolServer.model.Order;
+import ch.eschbach.cleanit.orderingToolServer.services.CustomerService;
 import ch.eschbach.cleanit.orderingToolServer.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,9 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    @Autowired
+    private CustomerService customerService;
+
     @GetMapping
     public ResponseEntity<List<Order>> getAllOrders() {
         List<Order> orders = orderService.getAllOrders();
@@ -41,9 +45,13 @@ public class OrderController {
         if (result.hasErrors()) {
             return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
         }
-        Customer customer = new Customer(data.customerId,"Static name","Static surname", new ArrayList<>());
+
+        Customer customer = customerService.getCustomerById(data.customerId);
+        if (customer == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
         Order order = orderService.save(new Order(customer, data.dryWeightKg, LocalDate.now()));
-        System.out.println(data.dryWeightKg);
         return new ResponseEntity<>(order, HttpStatus.CREATED);
 
     }

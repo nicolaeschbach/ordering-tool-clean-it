@@ -59,6 +59,7 @@ public class Order {
         this.dryWeightKg = dryWeightKg;
         this.customer = customer;
         this.orderDate = orderDate;
+        this.status = OrderStatus.Received;
     }
 
     public Order() {}
