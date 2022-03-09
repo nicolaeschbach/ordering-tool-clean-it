@@ -4,16 +4,6 @@ volumes:
   db-data:
 
 services:
-  backend:
-    build: ./orderingToolServer/
-    ports:
-      - 8080:8080
-
-  frontend:
-    build: ./app/
-    ports:
-      - 4200:80
-
   mysql:
     image: mysql:latest
     command: --default-authentication-plugin=mysql_native_password
@@ -26,6 +16,22 @@ services:
       MYSQL_ROOT_PASSWORD: db%&secret
     volumes:
       - db-data:/var/lib/mysql
+
+  backend:
+    build: ./orderingToolServer/
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/db_ordering_tool?useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: db%&secret
+      SPRING_PROFILES_ACTIVE: prod
+      TZ: CET
+
+  frontend:
+    build: ./app/
+    ports:
+      - 4200:80
 
   phpmyadmin:
     image: phpmyadmin:latest

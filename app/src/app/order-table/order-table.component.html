@@ -1,5 +1,13 @@
 <div class="mat-elevation-z8">
-  <h3 class="mat-h1"  >Orders</h3>
+  <div style="display: flex; padding-right: 100px">
+    <h3 class="mat-h1">Orders</h3>
+    <span class="spacer"></span>
+
+    <mat-form-field>
+      <input type="text" matInput placeholder="Search" #searchInput>
+    </mat-form-field>
+  </div>
+
 
   <table mat-table class="full-width-table" aria-label="Elements" [dataSource]="dataSource">
     <!-- Id Column -->

@@ -15,7 +15,7 @@ export class CreateOrderDialogComponent implements OnInit {
 
   model = new CreateOrderData( 0,0);
 
-  constructor(private _customerService : CustomerService, private _orderService : OrderService, private http: HttpClient) {
+  constructor(private customerService : CustomerService, private orderService : OrderService, private http: HttpClient) {
   }
 
   ngOnInit(): void {
@@ -29,14 +29,14 @@ export class CreateOrderDialogComponent implements OnInit {
       .subscribe({
         next: (response) => {
           console.log(response)
-          this._orderService.notifyAboutChange();
+          this.orderService.notifyAboutChange();
         },
         error: (error) => console.log(error),
       });
   }
 
   getCustomerData(): void {
-    const resp = this._customerService.getCustomers();
+    const resp = this.customerService.getCustomers();
     resp.subscribe(customerData => {
       console.log(customerData)
       this.customers = customerData;

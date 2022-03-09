@@ -1,4 +1,6 @@
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+.mat-toolbar {
+  min-height: 100px;
+}
 
 .mat-raised-button {
   margin: 0 0 15px 10px;
