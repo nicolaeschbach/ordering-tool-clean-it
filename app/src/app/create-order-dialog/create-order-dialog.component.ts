@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CustomerService} from "../services/customer.service";
 import {CreateOrderData} from "../createOrderData";
 import {HttpClient} from "@angular/common/http";
+import {OrderService} from "../services/order.service";
 
 @Component({
   selector: 'app-create-order-dialog',
@@ -14,7 +15,7 @@ export class CreateOrderDialogComponent implements OnInit {
 
   model = new CreateOrderData( 0,0);
 
-  constructor(private _customerService : CustomerService, private http: HttpClient) {
+  constructor(private _customerService : CustomerService, private _orderService : OrderService, private http: HttpClient) {
   }
 
   ngOnInit(): void {
@@ -26,7 +27,10 @@ export class CreateOrderDialogComponent implements OnInit {
     this.http
       .post('http://localhost:8080/ordering-tool/orders', this.model)
       .subscribe({
-        next: (response) => console.log(response),
+        next: (response) => {
+          console.log(response)
+          this._orderService.notifyAboutChange();
+        },
         error: (error) => console.log(error),
       });
   }

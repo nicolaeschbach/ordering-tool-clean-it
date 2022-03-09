@@ -11,19 +11,24 @@ import {HttpClientModule} from "@angular/common/http";
 import {OrderService} from "./services/order.service";
 import {MatButtonModule} from "@angular/material/button";
 import { CreateOrderDialogComponent } from './create-order-dialog/create-order-dialog.component';
-import {MatDialog, MatDialogModule} from "@angular/material/dialog";
+import {MatDialogModule} from "@angular/material/dialog";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
 import {MatCardModule} from "@angular/material/card";
 import {FormsModule} from "@angular/forms";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatIconModule} from "@angular/material/icon";
+import {MatGridListModule} from "@angular/material/grid-list";
+import { CustomerDialogComponent } from './customer-dialog/customer-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     OrderTableComponent,
-    CreateOrderDialogComponent
+    CreateOrderDialogComponent,
+    CustomerDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +45,10 @@ import {FormsModule} from "@angular/forms";
     MatSelectModule,
     MatInputModule,
     MatCardModule,
-    FormsModule
+    FormsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatGridListModule
   ],
   providers: [OrderService],
   bootstrap: [AppComponent]

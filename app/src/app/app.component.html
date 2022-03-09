@@ -1,4 +1,23 @@
-<h1>Clean-It! Ordering Tool</h1>
-<button mat-raised-button (click)="openDialog()" color="primary">Create Order</button>
+<mat-toolbar>
+  <span >Clean-It! Ordering Tool</span>
+  <span class="spacer"></span>
+  <button mat-raised-button (click)="openOrderDialog()" color="primary">
+    <mat-icon>note_add</mat-icon>
+    Create Order</button>
+  <button mat-raised-button (click)="openCustomerDialog()" color="primary">
+    <mat-icon>people</mat-icon>
+    Create Customer
+  </button>
+
+</mat-toolbar>
+
+
+<mat-divider style="height: 60px"></mat-divider>
 <order-table></order-table>
+
+<footer class="md-padding">
+  <div class="center">
+    <p class="mat-h3">Tech Challenge - Nicola Eschbach &#169; </p>
+  </div>
+</footer>
 
