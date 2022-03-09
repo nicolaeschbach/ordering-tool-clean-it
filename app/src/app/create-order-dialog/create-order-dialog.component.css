@@ -1,6 +1,15 @@
 .mat-button {
   margin: 5px;
 }
+
 .field-right-align {
   text-align: right;
+}
+
+.form-container {
+  padding: 30px;
+}
+
+.mat-form-field {
+  width: 300px;
 }

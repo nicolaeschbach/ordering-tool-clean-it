@@ -1,11 +1,9 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {MatTable, MatTableDataSource} from "@angular/material/table";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {MatTableDataSource} from "@angular/material/table";
 import {OrderData} from "./orderData";
 import {OrderService} from "../services/order.service";
-import {OrderTableDataSource, OrderTableItem} from "./order-table-datasource";
 import {Subscription} from "rxjs";
-import {MatPaginator} from "@angular/material/paginator";
-import {MatSort} from "@angular/material/sort";
+
 
 @Component({
   selector: 'order-table',
@@ -14,18 +12,14 @@ import {MatSort} from "@angular/material/sort";
 })
 
 export class OrderTableComponent implements OnInit, OnDestroy {
-  // @ViewChild(MatPaginator) paginator!: MatPaginator;
-  // @ViewChild(MatSort) sort!: MatSort;
-  // @ViewChild(MatTable) table!: MatTable<OrderTableItem>;
-  ELEMENT_DATA : OrderData[] = [];
+  ELEMENT_DATA: OrderData[] = [];
   displayedColumns = ['id', 'date', 'customer', 'dryWeightKg', 'status'];
-  dataSource : MatTableDataSource<OrderData> = new MatTableDataSource<OrderData>(this.ELEMENT_DATA);
-  // dataSource : OrderTableDataSource = new OrderTableDataSource();
+  dataSource: MatTableDataSource<OrderData> = new MatTableDataSource<OrderData>(this.ELEMENT_DATA);
   notifierSubscription: Subscription = this._orderService.subjectNotifier.subscribe(change => {
     this.getAllOrders();
   })
 
-  constructor(private _orderService : OrderService) {
+  constructor(private _orderService: OrderService) {
   }
 
   ngOnInit(): void {

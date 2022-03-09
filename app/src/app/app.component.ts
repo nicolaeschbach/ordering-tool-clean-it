@@ -9,6 +9,7 @@ import {CustomerDialogComponent} from "./customer-dialog/customer-dialog.compone
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   title = 'app';
 
@@ -18,15 +19,13 @@ export class AppComponent {
 
   openOrderDialog() {
     const dialogConfig = new MatDialogConfig();
-
     dialogConfig.autoFocus = true;
-
+    dialogConfig.minWidth = "350px";
     this.dialog.open(CreateOrderDialogComponent, dialogConfig);
   }
 
   openCustomerDialog() {
     this.dialog.open(CustomerDialogComponent);
-
   }
 }
 

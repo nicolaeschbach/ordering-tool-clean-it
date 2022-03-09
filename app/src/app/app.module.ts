@@ -36,8 +36,6 @@ import { CustomerDialogComponent } from './customer-dialog/customer-dialog.compo
     NoopAnimationsModule,
     MatCheckboxModule,
     MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
     MatButtonModule,
     MatDialogModule,
     MatDividerModule,
